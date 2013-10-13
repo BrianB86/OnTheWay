@@ -2,7 +2,7 @@ package com.example.ontheway;
 
 import android.app.IntentService;
 import android.content.BroadcastReceiver;
-import android.content.Intent;;
+import android.content.Intent;
 import android.util.Log;
 
 public class DrivingProc extends IntentService{
@@ -23,7 +23,8 @@ public class DrivingProc extends IntentService{
 	@Override
 	protected void onHandleIntent(Intent workIntent) {
 		//majority of code should go here. Running process that checks for driving.
-		//dies only when checked off by main activity
+		//dies only when checked off by main activity.
+		Log.d(TAG, "onHandleIntent");
 		
 		
 	}
