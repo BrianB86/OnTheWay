@@ -1,9 +1,10 @@
 package com.example.ontheway;
 
 import android.app.IntentService;
-import android.content.Intent;
+import android.content.BroadcastReceiver;
+import android.content.Intent;;
 
-public class DrivingProc extends IntentService  {
+public class DrivingProc extends IntentService{
 	
 	public DrivingProc(String name) {
 		super(name);
@@ -17,6 +18,7 @@ public class DrivingProc extends IntentService  {
 	protected void onHandleIntent(Intent workIntent) {
 		//majority of code should go here. Running process that checks for driving.
 		//dies only when checked off by main activity
+		
 		
 	}
 
