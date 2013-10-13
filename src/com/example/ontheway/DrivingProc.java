@@ -3,14 +3,20 @@ package com.example.ontheway;
 import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Intent;;
+import android.util.Log;
 
 public class DrivingProc extends IntentService{
+	String TAG = "DrivingProc";
+	public DrivingProc(){
+		this("test");
+	}
 	
 	public DrivingProc(String name) {
 		super(name);
 		//grab users contacts
 		//grab mapped responses
 		
+		Log.d(TAG, "constructor");
 		// TODO Auto-generated constructor stub
 	}
 
