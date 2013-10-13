@@ -27,10 +27,7 @@ public class DrivingProc extends IntentService{
 		//majority of code should go here. Running process that checks for driving.
 		//dies only when checked off by main activity.
 		Log.d(TAG, "onHandleIntent");
-		Context context = getApplicationContext();
-		SmsListener smsListener = new SmsListener();
-		IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
-		registerReceiver(smsListener,intentFilter);
+		
 		
 		
 	}
