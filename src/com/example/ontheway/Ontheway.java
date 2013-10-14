@@ -80,6 +80,19 @@ public class Ontheway extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.ontheway, menu);
         return true;
-    }    
+    }
+
+	@Override
+	protected void onDestroy() {
+		try{
+			unregisterReceiver(smsListener);
+		} catch (Exception e){
+			//Do nothing.
+		}
+		
+		super.onDestroy();
+	}  
+    
+
     
 }

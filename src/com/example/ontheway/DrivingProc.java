@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
+//Does this class actually do anything?
 public class DrivingProc extends IntentService{
 	String TAG = "DrivingProc";
 	public DrivingProc(){

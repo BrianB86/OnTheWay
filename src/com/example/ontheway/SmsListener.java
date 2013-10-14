@@ -8,8 +8,10 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -21,7 +23,7 @@ public class SmsListener extends BroadcastReceiver{
     private LocationManager locationManager;
     private float speed = 0;
     private float speedInMph = 0;
-    private float threshold = 20; //miles per hour
+    private float threshold = 25; //miles per hour
     
     
 
@@ -70,7 +72,7 @@ public class SmsListener extends BroadcastReceiver{
     	if(speedInMph < threshold){
         	Log.i("SmsReceiver", "Speed = " + speedInMph);
         	Toast.makeText(context, ("Speed = " + speedInMph + " mph"), Toast.LENGTH_SHORT).show();
-        	return true; //TODO change to false;
+        	return false;
     	} else {
     		Log.i("SmsReceiver", "Speed = " + speedInMph);
         	Toast.makeText(context, ("Speed = " + speedInMph + " mph"), Toast.LENGTH_SHORT).show();
@@ -81,7 +83,15 @@ public class SmsListener extends BroadcastReceiver{
     public void sendResponse(Context context, String destinationAddress){
     	SmsManager smsManager = SmsManager.getDefault();
     	String text = generateText();
-    	String scAddress = "908-555-1234";
+    	String scAddress = null;
+    	
+//    	try{
+//    		TelephonyManager tManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//    		scAddress = tManager.getLine1Number();
+//    	} catch(Exception e) {
+//    		//Do nothing... will send null.  //For some reasons there's problems when it's not null.
+//    	}
+    	
     	PendingIntent sentIntent, deliveryIntent;
     	
     	sentIntent = PendingIntent.getBroadcast(context, 0, new Intent("SMS_SENT"), 0);
@@ -89,7 +99,7 @@ public class SmsListener extends BroadcastReceiver{
     	
     	Log.d("SendResponse", "Try to send message");
     	
-    	smsManager.sendTextMessage(destinationAddress, null, text, sentIntent, deliveryIntent);
+    	smsManager.sendTextMessage(destinationAddress, scAddress, text, sentIntent, deliveryIntent);
     	Log.d("SendResponse", "Sent message?");
     	
     }
